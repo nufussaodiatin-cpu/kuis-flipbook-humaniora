@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission: Democracy — Periodisasi UUD Indonesia</title>
+<style>
+:root{--bg:#08111f;--panel:#101d31;--panel2:#14243c;--text:#f4f7fb;--muted:#aab7ca;--accent:#35d0ba;--gold:#ffd166;--danger:#ff647c;--blue:#5aa9ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at top,#18304e 0,#08111f 48%,#050a12 100%);color:var(--text);min-height:100vh}
+button,input{font:inherit}.app{max-width:1100px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}.brand h1{margin:0;font-size:clamp(25px,4vw,42px)}.brand p{margin:5px 0;color:var(--muted)}
+.badge{padding:9px 13px;border:1px solid #2d4667;border-radius:999px;background:#0e1a2c;color:var(--gold);font-weight:800}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.nav button{border:1px solid #2c4260;background:#0d192a;color:#dce7f5;padding:11px 15px;border-radius:12px;cursor:pointer}.nav button.active,.nav button:hover{background:var(--accent);color:#06131c;border-color:var(--accent);font-weight:800}
+.page{display:none}.page.active{display:block}.card{background:linear-gradient(145deg,rgba(20,36,60,.96),rgba(10,22,38,.96));border:1px solid #263e5f;border-radius:22px;padding:24px;box-shadow:0 18px 55px rgba(0,0,0,.25);margin-bottom:18px}
+.hero{padding:32px}.hero h2{font-size:32px;margin:0 0 10px}.hero p{color:var(--muted);line-height:1.7}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.feature{padding:18px;border-radius:17px;background:#0c1829;border:1px solid #253b58}.feature b{display:block;margin-bottom:6px;color:var(--accent)}
+input{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #365170;background:#091525;color:#fff;outline:none}input:focus{border-color:var(--accent)}
+.formgrid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.btn{border:0;border-radius:12px;padding:12px 17px;cursor:pointer;font-weight:800}.primary{background:var(--accent);color:#05141b}.secondary{background:#223954;color:#fff}.danger{background:var(--danger);color:#fff}.gold{background:var(--gold);color:#17120a}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.timer{font-size:22px;font-weight:900;color:var(--gold);padding:9px 14px;border-radius:12px;background:#281f0b;border:1px solid #6d571d}.progress{height:9px;background:#091525;border-radius:99px;overflow:hidden;margin:15px 0}.progress i{display:block;height:100%;background:var(--accent);width:0;transition:.3s}
+.question{font-size:22px;line-height:1.45;margin:18px 0}.options{display:grid;gap:10px}.option{display:flex;align-items:flex-start;gap:12px;padding:14px;border:1px solid #304866;background:#0b1829;border-radius:14px;cursor:pointer;transition:.2s}.option:hover{border-color:var(--accent);transform:translateY(-1px)}.option input{width:auto;margin-top:4px}.option span{line-height:1.45}.feedback{margin-top:15px;padding:13px;border-radius:12px;background:#0a1727;color:#b9c8dc;display:none}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:20px;flex-wrap:wrap}.score{font-size:40px;font-weight:900;color:var(--gold)}.result-list{display:grid;gap:8px;margin:15px 0}.result-item{padding:12px;border-radius:12px;background:#0b1829;border:1px solid #263e5f}.correct{border-color:#248d7d}.wrong{border-color:#8c3347}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.gamecard{min-height:190px;perspective:900px;cursor:pointer}.gameinner{position:relative;width:100%;height:100%;min-height:190px;transition:transform .6s;transform-style:preserve-3d}.gamecard.flipped .gameinner{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;border:1px solid #365170;padding:20px;background:linear-gradient(145deg,#142943,#0b1728);display:flex;flex-direction:column;justify-content:center}.back{transform:rotateY(180deg);background:linear-gradient(145deg,#123a45,#0b202d);border-color:#2aa993}.face small{color:var(--muted)}.face h3{margin:7px 0;font-size:21px}.matchbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}
+.puzzle-list{display:grid;gap:10px;max-width:760px;margin:20px auto}.puzzle-card{padding:17px;border:1px solid #365170;background:#10213a;border-radius:15px;cursor:grab;display:flex;gap:12px;align-items:center}.puzzle-card.dragging{opacity:.4}.puzzle-card.correctpos{border-color:#2aa993}.dropzone{min-height:20px}.timeline{display:grid;gap:10px}.timeline-slot{min-height:75px;border:2px dashed #365170;border-radius:15px;padding:8px}.timeline-slot.over{border-color:var(--accent);background:#0e2931}.slot-label{font-size:12px;color:var(--muted);margin-bottom:5px}.reward{padding:18px;border-radius:15px;background:linear-gradient(135deg,#173a39,#14233b);border:1px solid #2aa993;margin-top:18px}.secret{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.secret input{max-width:180px;text-transform:uppercase}.hidden{display:none!important}.footer{text-align:center;color:#7f91a8;padding:20px 0 5px;font-size:13px}
+@media(max-width:650px){.app{padding:14px}.formgrid{grid-template-columns:1fr}.card{padding:18px}.question{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><h1>MISSION: DEMOCRACY</h1><p>Periodisasi UUD di Indonesia • Media Game Interaktif</p></div>
+  <div class="badge">🏛️ PPKn Kelas XI</div>
+</header>
+
+<nav class="nav">
+ <button data-page="home" class="active">🏠 Beranda</button>
+ <button data-page="quiz">⚡ Kuis 30 Detik</button>
+ <button data-page="cards">🕵️ Game Kartu</button>
+ <button data-page="puzzle">🧩 Puzzle Timeline</button>
+</nav>
+
+<section id="home" class="page active">
+ <div class="card hero">
+  <h2>Jelajahi Perjalanan Konstitusi Indonesia!</h2>
+  <p>Selamat datang, Constitution Explorer. Selesaikan kuis, buka kartu petunjuk, lalu susun timeline konstitusi Indonesia dari periode paling awal hingga paling akhir.</p>
+  <div class="grid">
+   <div class="feature"><b>⚡ Kuis</b>19 soal berdasarkan materi pada dokumen, masing-masing 30 detik.</div>
+   <div class="feature"><b>🕵️ Game Kartu</b>Balik kartu untuk menemukan petunjuk konstitusi dan periode berlakunya.</div>
+   <div class="feature"><b>🧩 Puzzle</b>Seret kartu periode ke urutan timeline yang benar.</div>
+   <div class="feature"><b>🎖️ Kode Rahasia</b>Selesaikan misi untuk memperoleh kode U-D-E-M.</div>
+  </div>
+ </div>
+ <div class="card">
+  <h2>Identitas Peserta</h2>
+  <div class="formgrid">
+   <input id="studentName" placeholder="Nama lengkap">
+   <input id="studentNo" placeholder="No. absen" inputmode="numeric">
+  </div>
+  <p style="color:var(--muted)">Identitas akan dicantumkan pada hasil kuis yang dapat diunduh.</p>
+  <button class="btn primary" onclick="startQuiz()">Mulai Kuis →</button>
+ </div>
+</section>
+
+<section id="quiz" class="page">
+ <div id="quizStart" class="card">
+  <h2>⚡ Quick Challenge + Boss Level</h2>
+  <p>Setiap soal memiliki waktu <b>30 detik</b>. Waktu habis otomatis berpindah ke soal berikutnya. Skor akhir dihitung dari jawaban benar.</p>
+  <button class="btn primary" onclick="startQuiz()">Mulai Sekarang</button>
+ </div>
+ <div id="quizBox" class="card hidden">
+  <div class="quiz-head"><div><b id="qMission">MISI</b><div id="qNumber"></div></div><div class="timer">⏱️ <span id="timer">30</span>s</div></div>
+  <div class="progress"><i id="progressBar"></i></div>
+  <div id="questionText" class="question"></div>
+  <div id="options" class="options"></div>
+  <div id="feedback" class="feedback"></div>
+  <div class="actions"><button id="nextBtn" class="btn primary" onclick="submitAnswer()">Jawab & Lanjut →</button></div>
+ </div>
+ <div id="quizResult" class="card hidden"></div>
+</section>
+
+<section id="cards" class="page">
+ <div class="card">
+  <div class="matchbar"><div><h2>🕵️ Misi 2 — Constitution Detective</h2><p style="color:var(--muted)">Klik setiap kartu untuk membaliknya dan membaca petunjuk.</p></div><div class="badge">+10 / kartu</div></div>
+  <div id="cardGrid" class="cards"></div>
+  <div class="reward"><b>🎖️ Badge:</b> CONSTITUTION DETECTIVE — Kartu berhasil dieksplorasi!</div>
+ </div>
+</section>
+
+<section id="puzzle" class="page">
+ <div class="card">
+  <h2>🧩 Misi 3 — Timeline Puzzle</h2>
+  <p>Seret setiap kartu ke slot urutan yang tepat. Urutan yang benar adalah dari periode paling awal sampai paling akhir.</p>
+  <div id="puzzleBank" class="puzzle-list"></div>
+  <h3>📜 Timeline Jawaban</h3>
+  <div id="timeline" class="timeline"></div>
+  <div class="actions">
+   <button class="btn secondary" onclick="resetPuzzle()">Acak Ulang</button>
+   <button class="btn primary" onclick="checkPuzzle()">Periksa Timeline</button>
+  </div>
+  <div id="puzzleResult"></div>
+ </div>
+ <div class="card">
+  <h2>🔐 Kode Rahasia</h2>
+  <p>Setelah misi selesai, masukkan kode rahasia dari dokumen materi.</p>
+  <div class="secret"><input id="secretCode" placeholder="Masukkan kode"><button class="btn gold" onclick="checkCode()">Buka Kode</button></div>
+  <div id="secretResult"></div>
+ </div>
+</section>
+
+<div class="footer">Media pembelajaran interaktif • Berdasarkan dokumen “SOAL KUIS FLIPBOOK”</div>
+</div>
+
+<script>
+const questions=[
+{m:"MISI 1 — TIME TRAVELER",q:"Urutan periodisasi konstitusi Indonesia yang tepat adalah ...",o:["UUDS 1950 → UUD 1945 → Konstitusi RIS → UUD NRI 1945","UUD 1945 → Konstitusi RIS 1949 → UUDS 1950 → UUD 1945 → UUD NRI 1945","Konstitusi RIS → UUD 1945 → UUDS 1950 → UUD NRI 1945","UUD 1945 → UUDS 1950 → Konstitusi RIS → UUD NRI 1945"],a:1},
+{m:"MISI 1 — TIME TRAVELER",q:"Konstitusi yang berlaku pada periode 27 Desember 1949–17 Agustus 1950 adalah ...",o:["UUD 1945","UUDS 1950","Konstitusi RIS 1949","UUD NRI 1945"],a:2},
+{m:"MISI 1 — TIME TRAVELER",q:"UUDS 1950 berlaku pada periode ...",o:["18 Agustus 1945–27 Desember 1949","27 Desember 1949–17 Agustus 1950","17 Agustus 1950–5 Juli 1959","5 Juli 1959–19 Oktober 1999"],a:2},
+{m:"MISI 1 — TIME TRAVELER",q:"Peristiwa yang menandai berakhirnya masa berlakunya UUDS 1950 adalah ...",o:["Proklamasi Kemerdekaan","Dekret Presiden 5 Juli 1959","Perubahan UUD tahun 1999","Pembentukan Konstituante"],a:1},
+{m:"MISI 1 — BONUS TIME TRAVEL",q:"Jika kamu hidup pada tanggal 1 Januari 1951, konstitusi yang sedang berlaku adalah ...",o:["UUD 1945","Konstitusi RIS 1949","UUDS 1950","UUD NRI 1945"],a:2},
+{m:"MISI 2 — CONSTITUTION DETECTIVE",q:"Aku berlaku setelah Indonesia memasuki bentuk negara Republik Indonesia Serikat. Masa berlakuku berlangsung dari 27 Desember 1949 sampai 17 Agustus 1950. Siapakah aku?",o:["UUD 1945","Konstitusi RIS 1949","UUDS 1950","UUD NRI 1945"],a:1},
+{m:"MISI 2 — CONSTITUTION DETECTIVE",q:"Aku berlaku setelah Indonesia kembali menjadi negara kesatuan. Aku digunakan sejak 17 Agustus 1950 sampai 5 Juli 1959. Siapakah aku?",o:["UUD 1945","Konstitusi RIS","UUDS 1950","UUD NRI 1945"],a:2},
+{m:"MISI 2 — CONSTITUTION DETECTIVE",q:"Aku digunakan kembali setelah Dekret Presiden 5 Juli 1959. Masa berlakuku berlangsung sampai sebelum perubahan UUD dimulai pada 1999. Siapakah aku?",o:["UUD 1945","Konstitusi RIS","UUDS 1950","UUD NRI 1945 hasil perubahan"],a:0},
+{m:"MISI 2 — LEVEL SULIT",q:"Aku bukan konstitusi baru yang menggantikan seluruh UUD sebelumnya. Aku merupakan UUD 1945 yang telah mengalami empat kali perubahan pada 1999, 2000, 2001, dan 2002. Siapakah aku?",o:["Konstitusi RIS 1949","UUDS 1950","UUD 1945 sebelum perubahan","UUD NRI Tahun 1945 hasil perubahan"],a:3},
+{m:"MISI 4 — QUICK CHALLENGE",q:"Konstitusi RIS berlaku pada tahun ...",o:["1945–1949","1949–1950","1950–1959","1959–1999"],a:1},
+{m:"MISI 4 — QUICK CHALLENGE",q:"UUDS 1950 mulai berlaku pada ...",o:["17 Agustus 1945","27 Desember 1949","17 Agustus 1950","5 Juli 1959"],a:2},
+{m:"MISI 4 — QUICK CHALLENGE",q:"Dekret Presiden tanggal 5 Juli 1959 berkaitan dengan diberlakukannya kembali ...",o:["Konstitusi RIS","UUDS 1950","UUD 1945","UUD NRI 1945 hasil perubahan"],a:2},
+{m:"MISI 4 — QUICK CHALLENGE",q:"Perubahan UUD 1945 dilakukan sebanyak ...",o:["Dua kali","Tiga kali","Empat kali","Lima kali"],a:2},
+{m:"MISI 4 — QUICK CHALLENGE",q:"Perubahan UUD 1945 berlangsung pada tahun ...",o:["1945, 1949, 1950, 1959","1998, 1999, 2000, 2001","1999, 2000, 2001, 2002","2000, 2001, 2002, 2003"],a:2},
+{m:"BOSS LEVEL A — THE CONSTITUTION MASTER",q:"Perhatikan urutan: UUD 1945 → Konstitusi RIS → UUDS 1950 → UUD 1945 → UUD NRI 1945. Kesimpulan yang tepat berdasarkan urutan tersebut adalah ...",o:["Indonesia selalu menggunakan satu konstitusi sejak merdeka.","Indonesia mengalami beberapa periode keberlakuan konstitusi.","Konstitusi Indonesia hanya mengalami perubahan satu kali.","UUD 1945 tidak pernah digunakan kembali."],a:1},
+{m:"BOSS LEVEL A — THE CONSTITUTION MASTER",q:"Seorang siswa mengatakan: “UUDS 1950 berlaku setelah Dekret Presiden 5 Juli 1959.” Apakah pernyataan tersebut tepat?",o:["Tepat, karena Dekret Presiden memberlakukan UUDS 1950.","Tepat, karena UUDS 1950 berlaku sampai 1999.","Tidak tepat, karena setelah Dekret Presiden 5 Juli 1959 UUD 1945 diberlakukan kembali.","Tidak tepat, karena setelah Dekret Presiden Indonesia menggunakan Konstitusi RIS."],a:2},
+{m:"BOSS LEVEL A — THE CONSTITUTION MASTER",q:"Apa yang membedakan periode UUD 1945 sebelum perubahan dengan UUD NRI Tahun 1945 hasil perubahan dalam periodisasi yang dipelajari?",o:["Keduanya tidak pernah berlaku di Indonesia.","UUD NRI Tahun 1945 merupakan UUD 1945 yang telah mengalami perubahan.","UUD NRI Tahun 1945 merupakan Konstitusi RIS yang diubah.","UUD 1945 sebelum perubahan hanya berlaku selama satu tahun."],a:1},
+{m:"BOSS LEVEL A — HOTS",q:"Raka menyusun periodisasi berikut: 1945–1949 → UUD 1945; 1949–1950 → UUDS 1950; 1950–1959 → Konstitusi RIS; 1959–1999 → UUD 1945. Apa kesalahan utama dalam penyusunan Raka?",o:["Tahun 1945 seharusnya menggunakan UUDS 1950.","Konstitusi RIS dan UUDS 1950 tertukar dalam urutan periodisasi.","UUD 1945 tidak berlaku setelah 1959.","Konstitusi RIS berlaku sampai 1959."],a:1},
+{m:"BOSS LEVEL A — FINAL CHALLENGE",q:"Perhatikan pernyataan: (1) UUD 1945 berlaku sejak 18 Agustus 1945. (2) Konstitusi RIS berlaku 27 Desember 1949–17 Agustus 1950. (3) UUDS 1950 berlaku 17 Agustus 1950–5 Juli 1959. (4) UUD 1945 berlaku kembali setelah Dekret Presiden 5 Juli 1959. (5) UUD 1945 mengalami empat kali perubahan pada 1999–2002. Pernyataan yang tepat adalah ...",o:["(1), (2), dan (3)","(1), (3), dan (5)","(2), (3), dan (4)","(1), (2), (3), (4), dan (5)"],a:3}
+];
+
+const cards=[
+["CLUE 1","Aku berlaku setelah Indonesia memasuki bentuk negara Republik Indonesia Serikat."],
+["CLUE 2","Aku berlaku setelah Indonesia kembali menjadi negara kesatuan."],
+["CLUE 3","Aku digunakan kembali setelah Dekret Presiden 5 Juli 1959 dan berlangsung sebelum perubahan UUD dimulai pada 1999."],
+["CLUE 4","Aku bukan konstitusi baru yang menggantikan seluruh UUD sebelumnya. Aku merupakan UUD 1945 yang telah mengalami empat kali perubahan."],
+["ANSWER ","Konstitusi RIS 1949 • 27 Desember 1949–17 Agustus 1950"],
+["ANSWER ","UUDS 1950 • 17 Agustus 1950–5 Juli 1959"],
+["ANSWER ","UUD 1945 • 5 Juli 1959–19 Oktober 1999"],
+["ANSWER ","UUD NRI Tahun 1945 hasil perubahan • perubahan 1999, 2000, 2001, 2002"]
+];
+
+const puzzleData=[
+["B","UUD 1945","18 Agustus 1945–27 Desember 1949"],
+["E","Konstitusi RIS 1949","27 Desember 1949–17 Agustus 1950"],
+["A","UUDS 1950","17 Agustus 1950–5 Juli 1959"],
+["D","UUD 1945","5 Juli 1959–19 Oktober 1999"],
+["C","UUD NRI Tahun 1945 hasil perubahan","19 Oktober 1999–sekarang"]
+];
+
+let current=0, score=0, timerId=null, seconds=30, answers=[], quizStarted=false;
+
+function showPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+
+function startQuiz(){
+ const name=document.getElementById("studentName").value.trim(), no=document.getElementById("studentNo").value.trim();
+ if(!name||!no){alert("Silakan isi nama lengkap dan nomor absen terlebih dahulu.");showPage("home");return;}
+ current=0;score=0;answers=[];quizStarted=true;
+ document.getElementById("quizStart").classList.add("hidden");
+ document.getElementById("quizResult").classList.add("hidden");
+ document.getElementById("quizBox").classList.remove("hidden");
+ showPage("quiz");renderQuestion();
+}
+function renderQuestion(){
+ clearInterval(timerId);seconds=30;document.getElementById("timer").textContent=seconds;
+ const q=questions[current];
+ document.getElementById("qMission").textContent=q.m;
+ document.getElementById("qNumber").textContent=`Soal ${current+1} dari ${questions.length}`;
+ document.getElementById("questionText").textContent=q.q;
+ document.getElementById("progressBar").style.width=((current)/questions.length*100)+"%";
+ const box=document.getElementById("options");box.innerHTML="";
+ q.o.forEach((opt,i)=>{
+  const label=document.createElement("label");label.className="option";
+  label.innerHTML=`<input type="radio" name="answer" value="${i}"><span><b>${String.fromCharCode(65+i)}.</b> ${opt}</span>`;
+  box.appendChild(label);
+ });
+ document.getElementById("feedback").style.display="none";
+ document.getElementById("nextBtn").textContent=current===questions.length-1?"Selesaikan Kuis →":"Jawab & Lanjut →";
+ timerId=setInterval(()=>{seconds--;document.getElementById("timer").textContent=seconds;if(seconds<=0){clearInterval(timerId);submitAnswer(true)}},1000);
+}
+function submitAnswer(auto=false){
+ clearInterval(timerId);
+ const selected=document.querySelector('input[name="answer"]:checked');
+ const chosen=selected?Number(selected.value):null;
+ const q=questions[current], correct=chosen===q.a;
+ if(correct)score++;
+ answers.push({question:q.q,chosen:chosen===null?"Tidak dijawab":q.o[chosen],correct:q.o[q.a],isCorrect:correct});
+ if(current<questions.length-1){current++;renderQuestion();}else finishQuiz();
+}
+function finishQuiz(){
+ clearInterval(timerId);
+ document.getElementById("quizBox").classList.add("hidden");
+ document.getElementById("progressBar").style.width="100%";
+ const pct=Math.round(score/questions.length*100);
+ let title=pct>=80?"🏆 THE CONSTITUTION MASTER":pct>=60?"🥇 CONSTITUTION EXPLORER":pct>=40?"🥈 CONSTITUTION SEEKER":"🌱 CONSTITUTION BEGINNER";
+ let rows=answers.map((x,i)=>`<div class="result-item ${x.isCorrect?"correct":"wrong"}"><b>${i+1}. ${x.isCorrect?"Benar":"Salah"}</b><br>Jawaban: ${x.chosen}<br>Kunci: ${x.correct}</div>`).join("");
+ document.getElementById("quizResult").innerHTML=`<h2>🏁 Hasil Kuis</h2><div class="score">${score}/${questions.length} • ${pct}%</div><h3>${title}</h3><p>Peserta: <b>${escapeHtml(document.getElementById("studentName").value)}</b> • Absen: <b>${escapeHtml(document.getElementById("studentNo").value)}</b></p><div class="result-list">${rows}</div><div class="actions"><button class="btn primary" onclick="downloadResult()">⬇️ Download Hasil</button><button class="btn secondary" onclick="startQuiz()">🔄 Ulangi Kuis</button></div>`;
+ document.getElementById("quizResult").classList.remove("hidden");
+}
+function downloadResult(){
+ const name=document.getElementById("studentName").value, no=document.getElementById("studentNo").value;
+ const pct=Math.round(score/questions.length*100);
+ let text=`HASIL KUIS — MISSION: DEMOCRACY\nPERIODISASI UUD DI INDONESIA\n\nNama: ${name}\nNo. Absen: ${no}\nSkor: ${score}/${questions.length}\nNilai: ${pct}\n\n`;
+ answers.forEach((x,i)=>{text+=`${i+1}. ${x.isCorrect?"BENAR":"SALAH"}\nJawaban: ${x.chosen}\nKunci: ${x.correct}\n\n`});
+ const blob=new Blob([text],{type:"text/plain;charset=utf-8"}),a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);a.download=`Hasil_Kuis_${name.replace(/\s+/g,"_")}.txt`;a.click();URL.revokeObjectURL(a.href);
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
+
+function renderCards(){
+ const grid=document.getElementById("cardGrid");grid.innerHTML="";
+ cards.forEach((c,i)=>{
+  const el=document.createElement("div");el.className="gamecard";el.innerHTML=`<div class="gameinner"><div class="face"><small>CONSTITUTION DETECTIVE</small><h3>🕵️ ${c[0]}</h3><p>Klik untuk membuka petunjuk.</p></div><div class="face back"><small>PETUNJUK</small><p>${c[1]}</p><h3>🔎 ${c[2]}</h3></div></div>`;
+  el.onclick=()=>el.classList.toggle("flipped");grid.appendChild(el);
+ });
+}
+renderCards();
+
+let dragSource=null;
+function resetPuzzle(){
+ const bank=document.getElementById("puzzleBank"),timeline=document.getElementById("timeline");bank.innerHTML="";timeline.innerHTML="";
+ const shuffled=[...puzzleData].sort(()=>Math.random()-.5);
+ shuffled.forEach((d,i)=>bank.appendChild(makePuzzleCard(d)));
+ for(let i=0;i<5;i++){const slot=document.createElement("div");slot.className="timeline-slot";slot.dataset.index=i;slot.innerHTML=`<div class="slot-label">POSISI ${i+1}</div>`;slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});slot.addEventListener("dragleave",()=>slot.classList.remove("over"));slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");if(dragSource){slot.appendChild(dragSource);dragSource=null;}});timeline.appendChild(slot);}
+ document.getElementById("puzzleResult").innerHTML="";
+}
+function makePuzzleCard(d){
+ const el=document.createElement("div");el.className="puzzle-card";el.draggable=true;el.dataset.key=d[0];el.innerHTML=`<b>Kartu ${d[0]}</b><span><b>${d[1]}</b><br><small>${d[2]}</small></span>`;
+ el.addEventListener("dragstart",()=>{dragSource=el;el.classList.add("dragging")});el.addEventListener("dragend",()=>el.classList.remove("dragging"));return el;
+}
+function checkPuzzle(){
+ const slots=[...document.querySelectorAll(".timeline-slot")];
+ const keys=slots.map(s=>s.querySelector(".puzzle-card")?.dataset.key||"");
+ const correct=puzzleData.map(x=>x[0]);let ok=keys.length===5&&keys.every((x,i)=>x===correct[i]);
+ document.getElementById("puzzleResult").innerHTML=ok?`<div class="reward">🎉 <b>TIMELINE BERHASIL DISUSUN!</b><br>Kamu mendapatkan +20 Democracy Points dan badge 🧩 TIMELINE MASTER.</div>`:`<div class="feedback" style="display:block">Belum tepat. Coba periksa kembali urutan tahun dan periode setiap konstitusi.</div>`;
+}
+function checkCode(){
+ const val=document.getElementById("secretCode").value.trim().toUpperCase().replace(/\s+/g,"");
+ document.getElementById("secretResult").innerHTML=val==="UDEM"?`<div class="reward">🎉 <b>MISSION A COMPLETED!</b><br>Kamu telah berhasil menelusuri perjalanan konstitusi Indonesia. Sekarang, bersiap untuk misi berikutnya: <b>PERUBAHAN UUD NRI TAHUN 1945!</b></div>`:`<div class="feedback" style="display:block">Kode belum tepat. Kumpulkan huruf dari seluruh misi.</div>`;
+}
+resetPuzzle();
+</script>
+</body>
+</html>
